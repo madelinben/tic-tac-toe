@@ -1,17 +1,32 @@
 def play():
-    board = [[' ', ' ', ' '],
-             [' ', ' ', ' '],
-             [' ', ' ', ' ']]
+    board = [' ', ' ', ' ',
+             ' ', ' ', ' ',
+             ' ', ' ', ' ']
 
     def printBoard():
-        for i in range(len(board)):
-            for j in range(len(board[i]) - 2):
-                print(board[i][j], '|', board[i][j + 1], '|', board[i][j + 2])
-                if i < len(board) - 1:
-                    print('---------')
+        print(board[0], '|', board[1], '|', board[2])
+        print('---------')
+        print(board[3], '|', board[4], '|', board[5])
+        print('---------')
+        print(board[6], '|', board[7], '|', board[8])
 
     def checkBoard():
         return False
+
+    def placeCounter(player):
+        while True:
+            pos = int(input(player + ": "))-1
+            if board[pos] == "X" or board[pos] == "O":
+                print("Error! Position already contains a counter")
+            elif (pos < 0) or (pos > 8):
+                print("Error! Position value must be between 1 and 9")
+            else:
+                break
+
+        if player == "Player 1":
+            board[pos] = "X"
+        else:
+            board[pos] = "O"
 
     finished = False
     playersTurn = True
@@ -24,10 +39,10 @@ def play():
             break
 
         if playersTurn:
-            position = input("Player 1: ")
+            placeCounter("Player 1")
             playersTurn = False
         else:
-            position = input("Player 2: ")
+            placeCounter("Player 2")
             playersTurn = True
 
     valid = False
