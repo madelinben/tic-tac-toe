@@ -11,7 +11,22 @@ def play():
         print(board[6], '|', board[7], '|', board[8])
 
     def checkBoard():
-        return False
+        winCombo = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
+        for i in winCombo:
+            if board[i[0]] == board[i[1]] == board[i[2]] == "X":
+                print("Congratulations! Player 1 Wins!")
+                return True
+            elif board[i[0]] == board[i[1]] == board[i[2]] == "O":
+                print("Congratulations! Player 2 Wins!")
+                return True
+
+        count = 0
+        for j in range(9):
+            if board[j] == "X" or board[j] == "O":
+                count += 1
+            if count == 9:
+                print("Tie!")
+                return True
 
     def placeCounter(player):
         while True:
@@ -46,7 +61,7 @@ def play():
             playersTurn = True
 
     valid = False
-    while valid:
+    while not valid:
         userInput = input("Play again [y/n]").lower()
         if userInput == "y":
             valid = True
